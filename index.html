@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bikoman - Authentic Filipino Rice Cakes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #8B4513, #D2691E);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #FFD700;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(139, 69, 19, 0.8), rgba(210, 105, 30, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23F4E4BC" width="1200" height="600"/></svg>');
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #FFD700;
+            color: #8B4513;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 5rem 0;
+            background: #FFF8E7;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #8B4513;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(45deg, #D2691E, #CD853F);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #8B4513;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #D2691E;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stars {
+            color: #FFD700;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-image {
+            height: 400px;
+            background: linear-gradient(45deg, #8B4513, #D2691E);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background: #FFF8E7;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #8B4513;
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            font-size: 3rem;
+            color: #FFD700;
+            opacity: 0.3;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: #8B4513;
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info h3 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            background: #FFD700;
+            color: #8B4513;
+            padding: 0.8rem;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        /* Social Media */
+        .social-section {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: inline-block;
+            background: #FFD700;
+            color: #8B4513;
+            padding: 1rem;
+            border-radius: 50%;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: #654321;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Modal for product details */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">BIKOMAN</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Authentic Filipino Rice Cakes</h1>
+                <p>Experience the traditional taste of homemade Biko, Maja Blanca, and Malagkit made with love and the finest ingredients</p>
+                <a href="#products" class="cta-button">View Our Products</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title">Our Delicious Products</h2>
+            <div class="product-grid">
+                <div class="product-card" onclick="openModal('biko')">
+                    <div class="product-image">🍰 Biko/Latik Image</div>
+                    <div class="product-content">
+                        <h3 class="product-name">BIKO/LATIK</h3>
+                        <p class="product-description">Filipino sticky rice cake made with glutinous rice, coconut milk, and brown sugar, covered in rich latik sauce</p>
+                        <div class="product-price">₱600</div>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span>1.6 (Rating)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" onclick="openModal('maja')">
+                    <div class="product-image">🌽 Maja Blanca Image</div>
+                    <div class="product-content">
+                        <h3 class="product-name">MAJA BLANCA</h3>
+                        <p class="product-description">Filipino dessert made from coconut milk, corn kernels, and condensed milk, topped with cheese and corn kernels</p>
+                        <div class="product-price">₱550</div>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span>1.6 (Rating)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" onclick="openModal('combo')">
+                    <div class="product-image">🍽️ Combo Image</div>
+                    <div class="product-content">
+                        <h3 class="product-name">COMBO BIKO/MAJA</h3>
+                        <p class="product-description">The combo offers the best of both textures and flavors - chewy and rich from the biko, and creamy and light from the maja</p>
+                        <div class="product-price">₱550</div>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span>1.6 (Rating)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" onclick="openModal('malagkit')">
+                    <div class="product-image">🍚 Malagkit Image</div>
+                    <div class="product-content">
+                        <h3 class="product-name">MALAGKIT</h3>
+                        <p class="product-description">A sticky rice in crispy coconut Filipino delicacies ka luto, its chocolatey and sticky while maintaining its traditional texture</p>
+                        <div class="product-price">₱1,200</div>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span>1.6 (Rating)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Bikoman</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Traditional Filipino Delicacies</h3>
+                    <p>At Bikoman, we specialize in creating authentic Filipino rice cakes using traditional recipes passed down through generations. Our commitment to quality ingredients and time-honored cooking methods ensures every bite delivers the true taste of Filipino heritage.</p>
+                    <br>
+                    <p>Located in Zone II, Brgy. Kiskis Alcala Pangasinan, we take pride in serving our local community with freshly made delicacies. Each product is carefully crafted with love and attention to detail, using only the finest coconut milk, glutinous rice, and natural ingredients.</p>
+                    <br>
+                    <p><strong>Pickup Only:</strong> All orders are available for pickup at our location. We believe in maintaining the freshness and quality of our products by ensuring they reach you at their best.</p>
+                </div>
+                <div class="about-image">
+                    🏪 Bikoman Store Image
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">The biko from Bikoman is absolutely amazing! It reminds me of my grandmother's cooking. The latik is perfectly sweet and the texture is just right.</p>
+                    <p class="testimonial-author">- Maria Santos</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">Best maja blanca in town! The corn kernels are fresh and the coconut flavor is authentic. I always order this for family gatherings.</p>
+                    <p class="testimonial-author">- Juan Dela Cruz</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">Great quality and affordable prices. The combo is perfect when you can't decide between biko and maja. Both are equally delicious!</p>
+                    <p class="testimonial-author">- Ana Rodriguez</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Visit Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong>Location:</strong><br>
+                            Zone II, Brgy. Kiskis Alcala Pangasinan
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <strong>Phone:</strong><br>
+                            +63 XXX XXX XXXX
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div>
+                            <strong>Pickup Hours:</strong><br>
+                            Mon-Sun: 8:00 AM - 6:00 PM
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <strong>Email:</strong><br>
+                            info@bikoman.ph
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <h3>How to Order</h3>
+                    <p style="line-height: 1.8;">
+                        1. Browse our products above<br>
+                        2. Contact us via phone or social media<br>
+                        3. Place your order and confirm pickup time<br>
+                        4. Visit us at our location<br>
+                        5. Enjoy your fresh Filipino delicacies!
+                    </p>
+                </div>
+            </div>
+            
+            <div class="social-section">
+                <h3>Follow Us on Social Media</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link">FB</a>
+                    <a href="#" class="social-link">IG</a>
+                    <a href="#" class="social-link">TT</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Bikoman. All rights reserved. | Authentic Filipino Rice Cakes</p>
+        </div>
+    </footer>
+
+    <!-- Modal for product details -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent">
+                <!-- Product details will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Product modal functionality
+        const modal = document.getElementById('productModal');
+        const modalContent = document.getElementById('modalContent');
+        const closeBtn = document.querySelector('.close');
+
+        function openModal(productType) {
+            const products = {
+                'biko': {
+                    name: 'BIKO/LATIK',
+                    price: '₱600',
+                    description: 'Filipino sticky rice cake made with glutinous rice, coconut milk, and brown sugar, covered in rich latik sauce. A traditional delicacy that brings back memories of childhood and family gatherings.',
+                    ingredients: 'Glutinous rice, coconut milk, brown sugar, latik sauce'
+                },
+                'maja': {
+                    name: 'MAJA BLANCA',
+                    price: '₱550',
+                    description: 'Filipino dessert made from coconut milk, corn kernels, and condensed milk, topped with cheese and corn kernels. Creamy, sweet, and absolutely delicious.',
+                    ingredients: 'Coconut milk, corn kernels, condensed milk, cheese'
+                },
+                'combo': {
+                    name: 'COMBO BIKO/MAJA',
+                    price: '₱550',
+                    description: 'The perfect combination offering the best of both worlds - the rich, chewy texture of biko and the creamy sweetness of maja blanca in one package.',
+                    ingredients: 'Combination of Biko and Maja Blanca ingredients'
+                },
+                'malagkit': {
+                    name: 'MALAGKIT',
+                    price: '₱1,200',
+                    description: 'A sticky rice in crispy coconut Filipino delicacy. This premium product maintains traditional texture while offering a unique chocolatey twist.',
+                    ingredients: 'Sticky rice, coconut, special chocolate blend'
+                }
+            };
+
+            const product = products[productType];
+            modalContent.innerHTML = `
+                <h2>${product.name}</h2>
+                <p style="font-size: 1.5rem; color: #D2691E; font-weight: bold; margin: 1rem 0;">${product.price}</p>
+                <p style="margin: 1rem 0; line-height: 1.6;">${product.description}</p>
+                <h4 style="margin-top: 1.5rem; color: #8B4513;">Ingredients:</h4>
+                <p style="color: #666;">${product.ingredients}</p>
+                <div style="margin-top: 2rem; padding: 1rem; background: #FFF8E7; border-radius: 8px;">
+                    <h4 style="color: #8B4513; margin-bottom: 0.5rem;">How to Order:</h4>
+                    <p style="color: #666; font-size: 0.9rem;">Contact us via phone or social media to place your order. Pickup only at our location in Zone II, Brgy. Kiskis Alcala Pangasinan.</p>
+                </div>
+            `;
+            modal.style.display = 'block';
+        }
+
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Animate elements on scroll
+        document.querySelectorAll('.product-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
